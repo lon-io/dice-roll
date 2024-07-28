@@ -27,6 +27,15 @@ header h1, footer p {
     margin: 10px 0;
 }
 
+main {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
 /* Game interface styles */
 #game-interface {
     display: flex;
@@ -35,8 +44,10 @@ header h1, footer p {
     justify-content: center;
     width: 100%;
     max-width: 600px;
-    padding: 20px;
+    padding: 30px;
     border: 2px solid #fff;
+    /* margin: 0 auto;
+    text-align: center; */
 }
 
 .game-container {
