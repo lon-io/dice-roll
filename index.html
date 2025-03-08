@@ -4,56 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>3D Dice Roll</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f0f0;
-    }
-
-    .dice-container {
-      perspective: 800px;
-    }
-
-    .dice {
-      width: 100px;
-      height: 100px;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 1s ease-out;
-    }
-
-    .face {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      background-color: #ddd;
-      border: 2px solid #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 3em;
-      color: #333;
-    }
-
-    .face:nth-child(1) { transform: translateZ(50px); }
-    .face:nth-child(2) { transform: rotateY(90deg) translateZ(50px); }
-    .face:nth-child(3) { transform: rotateY(180deg) translateZ(50px); }
-    .face:nth-child(4) { transform: rotateY(-90deg) translateZ(50px); }
-    .face:nth-child(5) { transform: rotateX(90deg) translateZ(50px); }
-    .face:nth-child(6) { transform: rotateX(-90deg) translateZ(50px); }
-
-    button {
-      position: absolute;
-      top: 20px;
-      padding: 10px 20px;
-      font-size: 1.2em;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <div class="dice-container">
@@ -67,60 +18,6 @@
     </div>
   </div>
   <button id="rollButton">Roll Dice</button>
-
-  <script>
-    const dice = document.querySelector('.dice');
-    const rollButton = document.getElementById('rollButton');
-
-    rollButton.addEventListener('click', () => {
-      rollDice();
-    });
-
-    function rollDice() {
-        // const dice = document.getElementById('dice');
-        const randomValue = Math.floor(Math.random() * 6) + 1;
-        let xRotation = 0;
-        let yRotation = 0;
-
-        switch (randomValue) {
-            case 1:
-                xRotation = 0;
-                yRotation = 0;
-                break;
-            case 2:
-                xRotation = 0;
-                yRotation = 180;
-                break;
-            case 3:
-                xRotation = 0;
-                yRotation = -90;
-                break;
-            case 4:
-                xRotation = 0;
-                yRotation = 90;
-                break;
-            case 5:
-                xRotation = -90;
-                yRotation = 0;
-                break;
-            case 6:
-                xRotation = 90;
-                yRotation = 0;
-                break;
-        }
-
-        const randomRotationX = Math.floor(Math.random() * 3600);
-        const randomRotationY = Math.floor(Math.random() * 3600);
-
-
-        // Roll
-        dice.style.transform = `rotateX(${randomRotationX}deg) rotateY(${randomRotationY}deg)`;
-
-        setTimeout(() => {
-            // Set
-            dice.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
-        }, 500)
-    }
-  </script>
+  <script src="assets/script.js"></script>
 </body>
 </html>
