@@ -1,46 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Dice Game Interface</title>
-    <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Dice Roll</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <header>
-        <!-- <h1>30 Seconds Dice</h1> -->
-    </header>
-    <main>
-        <section id="game-interface">
-            <div class="game-container">
-                <div class="game-header">
-                    <!-- <h2>Game Title</h2> -->
-                    <!-- <p>Score: <span id="score">0</span></p> -->
-                </div>
-                <div class="game-area">
-                    <div class="dice-container">
-                        <div id="dice" class="dice">
-                            <div class="face front">1</div>
-                            <div class="face back">1</div>
-                            <div class="face right">3</div>
-                            <div class="face left">3</div>
-                            <div class="face top">2</div>
-                            <div class="face bottom">2</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="game-controls">
-                    <!-- <button onclick="startGame()">Start Game</button>
-                    <button onclick="pauseGame()">Pause Game</button> -->
-                    <!-- <button onclick="resetGame()">Reset Game</button> -->
-                    <button onclick="rollDice()">Roll Dice</button>
-                </div>
-            </div>
-        </section>
-    </main>
-    <!-- <footer>
-        <p>&copy; 2024 Game Company. All rights reserved.</p>
-    </footer> -->
-    <script src="assets/script.js"></script>
+  <div class="dice-container">
+    <div class="dice">
+      <div class="face">1</div>
+      <div class="face">2</div>
+      <div class="face">3</div>
+      <div class="face">1</div>
+      <div class="face">2</div>
+      <div class="face">3</div>
+    </div>
+  </div>
+  <button id="rollButton">Roll Dice</button>
+  <script src="assets/script.js"></script>
 </body>
 </html>
