@@ -1,12 +1,15 @@
 const dice = document.querySelector(".dice");
 const rollButton = document.getElementById("rollButton");
+let lastRandomValue = 1;
+
+const symmetricPairs = [2, 1, 4, 3, 6, 5];
 
 rollButton.addEventListener("click", () => {
   rollDice();
 });
 
-function rollDice() {
-  const randomValue = Math.floor(Math.random() * 6) + 1;
+function getNextRotation(input) {
+  const randomValue = input ? input : Math.floor(Math.random() * 6) + 1;
   let xRotation = 0;
   let yRotation = 0;
 
@@ -37,14 +40,29 @@ function rollDice() {
       break;
   }
 
-  const randomRotationX = Math.floor(Math.random() * 3600);
-  const randomRotationY = Math.floor(Math.random() * 3600);
+  return {
+    randomValue,
+    xRotation,
+    yRotation,
+  };
+}
 
-  // Roll
-  dice.style.transform = `rotateX(${randomRotationX}deg) rotateY(${randomRotationY}deg)`;
+function rollDice(override) {
+  rollButton.disabled = true;
+  let { randomValue, xRotation, yRotation } = getNextRotation(override);
 
+  // If the same dice face is rolled, switch to it's symmetric pair to force an animation
+  if (randomValue === lastRandomValue) {
+    const symmetricRotation = getNextRotation(symmetricPairs[randomValue - 1]);
+    randomValue = symmetricRotation.randomValue;
+    xRotation = symmetricRotation.randomValue;
+    yRotation = symmetricRotation.yRotation;
+  }
+
+  dice.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
   setTimeout(() => {
-    // Set
-    dice.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+    // Enable button
+    rollButton.disabled = false;
   }, 500);
+  lastRandomValue = randomValue;
 }
