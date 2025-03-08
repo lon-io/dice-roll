@@ -1,47 +1,17 @@
-let score = 0;
+const dice = document.querySelector('.dice');
+const rollBtn = document.getElementById('roll-btn');
 
-function resetGame() {
-    rollDice(1);
+function rollDice() {
+    const randomNumber = Math.floor(Math.random() * 3) + 1; // Random number between 1 and 3
+    const randomRotationX = Math.floor(Math.random() * 4) * 90; // Random rotation for X axis
+    const randomRotationY = Math.floor(Math.random() * 4) * 90; // Random rotation for Y axis
+
+    dice.style.transform = `rotateX(${randomRotationX}deg) rotateY(${randomRotationY}deg)`;
+
+    // Ensure the dice always shows a number after the animation
+    setTimeout(() => {
+        dice.style.transform = `rotateX(${randomRotationX}deg) rotateY(${randomRotationY}deg)`;
+    }, 1000);
 }
 
-function rollDice(inputValue) {
-    const dice = document.getElementById('dice');
-    const randomValue = inputValue ? inputValue : Math.floor(Math.random() * 6) + 1;
-    let xRotation = 0;
-    let yRotation = 0;
-
-    switch (randomValue) {
-        case 1:
-            xRotation = 0;
-            yRotation = 0;
-            break;
-        case 2:
-            xRotation = 0;
-            yRotation = 180;
-            break;
-        case 3:
-            xRotation = 0;
-            yRotation = -90;
-            break;
-        case 4:
-            xRotation = 0;
-            yRotation = 90;
-            break;
-        case 5:
-            xRotation = -90;
-            yRotation = 0;
-            break;
-        case 6:
-            xRotation = 90;
-            yRotation = 0;
-            break;
-    }
-
-    dice.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
-    // updateScore(randomValue);
-}
-
-// function updateScore(diceValue) {
-//     // score += diceValue;
-//     document.getElementById('score').textContent = score;
-// }
+rollBtn.addEventListener('click', rollDice);

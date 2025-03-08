@@ -1,46 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Dice Game Interface</title>
-    <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Dice Roll</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .dice-container {
+      perspective: 800px;
+    }
+
+    .dice {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s ease-out;
+    }
+
+    .face {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: #ddd;
+      border: 2px solid #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3em;
+      color: #333;
+    }
+
+    .face:nth-child(1) { transform: translateZ(50px); }
+    .face:nth-child(2) { transform: rotateY(90deg) translateZ(50px); }
+    .face:nth-child(3) { transform: rotateY(180deg) translateZ(50px); }
+    .face:nth-child(4) { transform: rotateY(-90deg) translateZ(50px); }
+    .face:nth-child(5) { transform: rotateX(90deg) translateZ(50px); }
+    .face:nth-child(6) { transform: rotateX(-90deg) translateZ(50px); }
+
+    button {
+      position: absolute;
+      top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <!-- <h1>30 Seconds Dice</h1> -->
-    </header>
-    <main>
-        <section id="game-interface">
-            <div class="game-container">
-                <div class="game-header">
-                    <!-- <h2>Game Title</h2> -->
-                    <!-- <p>Score: <span id="score">0</span></p> -->
-                </div>
-                <div class="game-area">
-                    <div class="dice-container">
-                        <div id="dice" class="dice">
-                            <div class="face front">1</div>
-                            <div class="face back">1</div>
-                            <div class="face right">3</div>
-                            <div class="face left">3</div>
-                            <div class="face top">2</div>
-                            <div class="face bottom">2</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="game-controls">
-                    <!-- <button onclick="startGame()">Start Game</button>
-                    <button onclick="pauseGame()">Pause Game</button> -->
-                    <!-- <button onclick="resetGame()">Reset Game</button> -->
-                    <button onclick="rollDice()">Roll Dice</button>
-                </div>
-            </div>
-        </section>
-    </main>
-    <!-- <footer>
-        <p>&copy; 2024 Game Company. All rights reserved.</p>
-    </footer> -->
-    <script src="assets/script.js"></script>
+  <div class="dice-container">
+    <div class="dice">
+      <div class="face">1</div>
+      <div class="face">2</div>
+      <div class="face">3</div>
+      <div class="face">1</div>
+      <div class="face">2</div>
+      <div class="face">3</div>
+    </div>
+  </div>
+  <button id="rollButton">Roll Dice</button>
+
+  <script>
+    const dice = document.querySelector('.dice');
+    const rollButton = document.getElementById('rollButton');
+
+    rollButton.addEventListener('click', () => {
+      rollDice();
+    });
+
+    function rollDice() {
+        // const dice = document.getElementById('dice');
+        const randomValue = Math.floor(Math.random() * 6) + 1;
+        let xRotation = 0;
+        let yRotation = 0;
+
+        switch (randomValue) {
+            case 1:
+                xRotation = 0;
+                yRotation = 0;
+                break;
+            case 2:
+                xRotation = 0;
+                yRotation = 180;
+                break;
+            case 3:
+                xRotation = 0;
+                yRotation = -90;
+                break;
+            case 4:
+                xRotation = 0;
+                yRotation = 90;
+                break;
+            case 5:
+                xRotation = -90;
+                yRotation = 0;
+                break;
+            case 6:
+                xRotation = 90;
+                yRotation = 0;
+                break;
+        }
+
+        const randomRotationX = Math.floor(Math.random() * 3600);
+        const randomRotationY = Math.floor(Math.random() * 3600);
+
+
+        // Roll
+        dice.style.transform = `rotateX(${randomRotationX}deg) rotateY(${randomRotationY}deg)`;
+
+        setTimeout(() => {
+            // Set
+            dice.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+        }, 500)
+    }
+  </script>
 </body>
 </html>
